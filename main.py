@@ -1,4 +1,4 @@
-import sys, re
+import sys, os, re
 
 import asyncio
 import zendriver as zd
@@ -162,6 +162,7 @@ async def login_process():
 
         if not await wait_for_page_load(tab) or await get_service_btn(tab) is None:
             print("[ERROR] Page did not load as expected after login. Please check the page structure.")
+            await tab.save_screenshot("login_page_load_or_service_btn_error.png")
             return False
 
         # store the cookies after login
@@ -216,7 +217,7 @@ async def maintenance_process():
         # wait for the page to load after login, selector of the element that only appears after login (e.g. a[href='/nft-dashboard'])
         if not await check_if_logged_in(tab):
             print("[WARN] Not logged in. Please run the login process first.")
-            await browser.stop()
+            await tab.save_screenshot("maintenance_not_logged_in.png")
             return
         print("[INFO] Logged in successfully.")
         
@@ -227,6 +228,7 @@ async def maintenance_process():
             service_btn = await get_service_btn(tab)
             if service_btn is None:
                 print("[ERROR] Service button not found. Please check the page structure.")
+                await tab.save_screenshot("maintenance_service_btn_not_found_before_click.png")
                 return
             
             # check if the service button is clickable
@@ -240,6 +242,7 @@ async def maintenance_process():
                 continue
             elif service_btn_state == "unknown":
                 print("[ERROR] Service button is in unknown state. Please check the page structure.")
+                await tab.save_screenshot("maintenance_service_btn_unknown_state_before_click.png")
                 return
 
             # click the service button
@@ -253,6 +256,7 @@ async def maintenance_process():
             service_btn = await get_service_btn(tab)
             if service_btn is None:
                 print("[ERROR] Service button not found after click. Please check the page structure.")
+                await tab.save_screenshot("maintenance_service_btn_not_found_after_click.png")
                 return
 
             service_btn_state = await check_service_btn_state(tab, service_btn)
@@ -265,6 +269,7 @@ async def maintenance_process():
                 continue
             elif service_btn_state == "unknown":
                 print("[ERROR] Service button is in unknown state after click. Please check the page structure.")
+                await tab.save_screenshot("maintenance_service_btn_unknown_state_after_click.png")
                 return
 
             print("[INFO] Service button is still clickable after click. Retrying...")
@@ -290,6 +295,11 @@ Modes:
     if use_virtual_display:
         from pyvirtualdisplay.display import Display
 
+    # clean up old screenshots
+    screen_shots = [i for i in os.listdir() if i.endswith(".png")]
+    for screenshot in screen_shots:
+        os.remove(screenshot)
+        
     if mode == "login":
         if use_virtual_display:
             display = Display(backend="xvfb", size=(1920, 1080))
