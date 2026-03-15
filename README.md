@@ -23,7 +23,7 @@ Check [here](https://docs.astral.sh/uv/getting-started/installation/) to install
     # RockyLinux / AlmaLinux / Fedora
     sudo dnf install xorg-x11-server-Xvfb
     ```
-- Install [Google Chrome](https://www.google.com/intl/en_us/chrome/)
+- Download and Install [Google Chrome](https://www.google.com/intl/en_us/chrome/)
 - Run the `login` mode
     ```
     uv run main.py login
@@ -49,3 +49,4 @@ Check [here](https://docs.astral.sh/uv/getting-started/installation/) to install
 
 ## Thanks to
 - [zendriver](https://github.com/cdpdriver/zendriver) contributors
+- [PyVirtualDisplay](https://github.com/ponty/PyVirtualDisplay) contributors
