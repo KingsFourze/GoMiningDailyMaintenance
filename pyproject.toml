@@ -5,5 +5,6 @@ description = "A script to automatically click maintenance button on GoMining"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "pyvirtualdisplay>=3.0",
     "zendriver>=0.15.3",
 ]

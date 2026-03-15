@@ -285,10 +285,29 @@ Modes:
         return
 
     mode = sys.argv[1].lower()
+    use_virtual_display = sys.platform.startswith("linux")
+
+    if use_virtual_display:
+        from pyvirtualdisplay.display import Display
+
     if mode == "login":
-        await login_process()
+        if use_virtual_display:
+            display = Display(backend="xvfb", size=(1920, 1080))
+            display.start()
+        try:
+            await login_process()
+        finally:
+            if use_virtual_display:
+                display.stop()
     elif mode == "maintenance":
-        await maintenance_process()
+        if use_virtual_display:
+            display = Display(backend="xvfb", size=(1920, 1080))
+            display.start()
+        try:
+            await maintenance_process()
+        finally:
+            if use_virtual_display:
+                display.stop()
     else:
         print(f'Unknown mode: {mode}')
         print('Please use "login" or "maintenance".')
