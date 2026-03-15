@@ -1,0 +1,9 @@
+[project]
+name = "GoMining-Daily-Maintenance"
+version = "0.1.0"
+description = "A script to automatically click maintenance button on GoMining"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "zendriver>=0.15.3",
+]
