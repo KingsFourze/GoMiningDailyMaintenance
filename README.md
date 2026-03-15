@@ -14,6 +14,12 @@ Check [here](https://docs.astral.sh/uv/getting-started/installation/) to install
     ```
     uv sync
     ```
+- For linux user, install xvfb
+    ```
+    # Debian / Ubuntu
+    sudo apt install xvfb
+    ```
+- Install [Google Chrome](https://www.google.com/intl/en_us/chrome/)
 - Run the `login` mode
     ```
     uv run main.py login
