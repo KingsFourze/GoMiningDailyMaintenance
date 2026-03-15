@@ -1,5 +1,5 @@
 # GoMining Daily Maintenance
-A script to click the maintenance button on GoMining.
+A script to click the maintenance button (aka. service button) on GoMining.
 
 ## Usage
 
