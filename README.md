@@ -19,6 +19,10 @@ Check [here](https://docs.astral.sh/uv/getting-started/installation/) to install
     # Debian / Ubuntu
     sudo apt install xvfb
     ```
+    ```
+    # RockyLinux / AlmaLinux / Fedora
+    sudo dnf install xorg-x11-server-Xvfb
+    ```
 - Install [Google Chrome](https://www.google.com/intl/en_us/chrome/)
 - Run the `login` mode
     ```
