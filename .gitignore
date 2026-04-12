@@ -11,3 +11,6 @@ wheels/
 
 # Cookies file
 cookies.dat
+
+# Credentials file
+credentials.json
